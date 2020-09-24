@@ -30,14 +30,39 @@
 
         <link href="styles.css" rel="stylesheet">
         <script type='text/javascript' src="script.js"></script>
+
     </head>
     <body onload="init(4, 'img/punjab.jpg');">
-        <h2 class="text-center">Puzzle</h2>
+        <div style="display:flex; justify-content:center;">
+            <!-- <h2 class="text-center">Puzzle</h2> -->
+            <!-- <label class="text-center">Puzzle</label> -->
+            <button class="btn-light" id="goFS">Go fullscreen</button>
+        </div>
+        <!-- <h2 class="text-center">Puzzle</h2> -->
         <div class="puzzle-wrapper">
             <canvas id="canvas"></canvas>
         </div>
+        <!-- <div>
+            <button class="btn-light" id="goFS">Go fullscreen</button>
+        </div> -->
 
         <!-- Optional JavaScript -->
+        <script type="text/javascript">
+            var goFS = document.getElementById("goFS");
+            goFS.addEventListener("click", function() {
+              toggleFullScreen();
+            }, false);
+
+            function toggleFullScreen() {
+              if (!document.fullscreenElement) {
+                  document.documentElement.requestFullscreen();
+              } else {
+                if (document.exitFullscreen) {
+                  document.exitFullscreen(); 
+                }
+              }
+            }
+        </script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
