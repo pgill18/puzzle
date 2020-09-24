@@ -7,15 +7,15 @@
     margin-right: auto;
     /*width: 800px;*/
 }
-canvas {
+/*canvas {
     max-width: 100%;
     max-height: 100%;
 }
-
-body {
+*/
+/*body {
   background: white;    
 }
-
+*/
 @media screen and (min-width: 980px) /* Desktop */ {}
 
 @media screen  and (max-width: 979px) /* Tablet */ {}
