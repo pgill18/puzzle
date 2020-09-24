@@ -162,10 +162,14 @@ function updatePuzzle(e){
     if(e.layerX || e.layerX == 0){
         _mouse.x = e.layerX; // - _canvas.offsetLeft;
         _mouse.y = e.layerY; // - _canvas.offsetTop;
+    console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        { log: ` _mouse.x = (${e.layerX} //- ${_canvas.offsetLeft}); //e.layerX `});
     }
     else if(e.offsetX || e.offsetX == 0){
         _mouse.x = e.offsetX - _canvas.offsetLeft;
         _mouse.y = e.offsetY - _canvas.offsetTop;
+    console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        { log: ` _mouse.x = (${e.offsetX} - ${_canvas.offsetLeft}); //e.offsetX `});
     }
     else {
         const {pageX, pageY} = e.touches ? e.touches[0] : e;
@@ -174,6 +178,8 @@ function updatePuzzle(e){
         _mouse.y = (pageY - _canvasOffset.top) *multX;
         // console.log(`${_mouse.x} = ${pageX*multX} - ${_canvasOffset.left*multX}`)
         // console.log(`${_mouse.y} = ${pageY*multX} - ${_canvasOffset.top*multX}`)
+    console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        { log: ` _mouse.x = (${pageX} - ${_canvasOffset.left}) *${multX}; //pageX `});
     }
     _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
     var i;
