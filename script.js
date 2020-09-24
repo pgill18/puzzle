@@ -129,15 +129,15 @@ function onPuzzleClick(e){
     //     // console.log(`${_mouse.y} = ${pageY*multX} - ${_canvasOffset.top*multX}`)
     // }
     if(e.layerX || e.layerX == 0){
-        // _mouse.x = e.layerX; // - _canvas.offsetLeft;
-        // _mouse.y = e.layerY; // - _canvas.offsetTop;
+        // _mouse.x = e.layerX - _canvas.offsetLeft;
+        // _mouse.y = e.layerY - _canvas.offsetTop;
         let multX = _puzzleWidth/screen.width; if(multX<1) multX = 1;
         _mouse.x = e.layerX * multX; // - _canvas.offsetLeft;
         _mouse.y = e.layerY * multX; // - _canvas.offsetTop;
         // _mouse.x = (e.layerX - _canvasOffset.left) *multX;
         // _mouse.y = (e.layerY - _canvas.offsetTop) *multX;
-        console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { log: ` _mouse.x = (${e.layerX} //- ${_canvas.offsetLeft}); //e.layerX `});
+        // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { log: ` _mouse.x = (${e.layerX} //- ${_canvas.offsetLeft}); //e.layerX `});
     }
     else if(e.offsetX || e.offsetX == 0){
         // _mouse.x = e.offsetX - _canvas.offsetLeft;
@@ -147,8 +147,8 @@ function onPuzzleClick(e){
         _mouse.y = e.offsetY * multX; // - _canvas.offsetTop;
         // _mouse.x = (e.offsetX - _canvasOffset.left) *multX;
         // _mouse.y = (e.offsetY - _canvas.offsetTop) *multX;
-        console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { log: ` _mouse.x = (${e.offsetX} - ${_canvas.offsetLeft}); //e.offsetX `});
+        // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { log: ` _mouse.x = (${e.offsetX} - ${_canvas.offsetLeft}); //e.offsetX `});
     }
     else {
         let {pageX, pageY} = e.touches ? e.touches[0] : e;
@@ -157,8 +157,8 @@ function onPuzzleClick(e){
         _mouse.y = (pageY - _canvasOffset.top) *multX;
         // console.log(`${_mouse.x} = ${pageX*multX} - ${_canvasOffset.left*multX}`)
         // console.log(`${_mouse.y} = ${pageY*multX} - ${_canvasOffset.top*multX}`)
-        console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { log: ` _mouse.x = (${pageX} - ${_canvasOffset.left}) *${multX}; //pageX `});
+        // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { log: ` _mouse.x = (${pageX} - ${_canvasOffset.left}) *${multX}; //pageX `});
     }
     _currentPiece = checkPieceClicked();
     if(_currentPiece != null){
@@ -192,15 +192,15 @@ function updatePuzzle(e){
     'use strict';
     _currentDropPiece = null;
     if(e.layerX || e.layerX == 0){
-        // _mouse.x = e.layerX; // - _canvas.offsetLeft;
-        // _mouse.y = e.layerY; // - _canvas.offsetTop;
+        // _mouse.x = e.layerX - _canvas.offsetLeft;
+        // _mouse.y = e.layerY - _canvas.offsetTop;
         let multX = _puzzleWidth/screen.width; if(multX<1) multX = 1;
         _mouse.x = e.layerX * multX; // - _canvas.offsetLeft;
         _mouse.y = e.layerY * multX; // - _canvas.offsetTop;
         // _mouse.x = (e.layerX - _canvasOffset.left) *multX;
         // _mouse.y = (e.layerY - _canvas.offsetTop) *multX;
-        console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { log: ` _mouse.x = (${e.layerX} //- ${_canvas.offsetLeft}); //e.layerX `});
+        // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { log: ` _mouse.x = (${e.layerX} //- ${_canvas.offsetLeft}); //e.layerX `});
     }
     else if(e.offsetX || e.offsetX == 0){
         // _mouse.x = e.offsetX - _canvas.offsetLeft;
@@ -210,8 +210,8 @@ function updatePuzzle(e){
         _mouse.y = e.offsetY * multX; // - _canvas.offsetTop;
         // _mouse.x = (e.offsetX - _canvasOffset.left) *multX;
         // _mouse.y = (e.offsetY - _canvas.offsetTop) *multX;
-        console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { log: ` _mouse.x = (${e.offsetX} - ${_canvas.offsetLeft}); //e.offsetX `});
+        // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { log: ` _mouse.x = (${e.offsetX} - ${_canvas.offsetLeft}); //e.offsetX `});
     }
     else {
         let {pageX, pageY} = e.touches ? e.touches[0] : e;
@@ -220,8 +220,8 @@ function updatePuzzle(e){
         _mouse.y = (pageY - _canvasOffset.top) *multX;
         // console.log(`${_mouse.x} = ${pageX*multX} - ${_canvasOffset.left*multX}`)
         // console.log(`${_mouse.y} = ${pageY*multX} - ${_canvasOffset.top*multX}`)
-        console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { log: ` _mouse.x = (${pageX} - ${_canvasOffset.left}) *${multX}; //pageX `});
+        // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { log: ` _mouse.x = (${pageX} - ${_canvasOffset.left}) *${multX}; //pageX `});
     }
     _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
     var i;
@@ -244,8 +244,8 @@ function updatePuzzle(e){
                 _stage.fillStyle = PUZZLE_HOVER_TINT;
                 _stage.fillRect(_currentDropPiece.xPos,_currentDropPiece.yPos,_pieceWidth, _pieceHeight);
                 _stage.restore();
-    // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        // { xps: piece.xPos, xpy: piece.yPos, dpx: _currentDropPiece.xPos, dpy: _currentDropPiece.yPos});
+                // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+                    // { xps: piece.xPos, xpy: piece.yPos, dpx: _currentDropPiece.xPos, dpy: _currentDropPiece.yPos});
             }
         }
     }
