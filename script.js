@@ -15,9 +15,13 @@ var _currentDropPiece;
 
 var _mouse;
 
+var _canvasOffset = 0;
+
 function init(dificult, image){
     'use strict';
-    document.ontouchmove = function(event){ event.preventDefault(); }
+    // document.ontouchmove = function(event){ event.preventDefault(); }
+    document.addEventListener("touchmove", function (e) {
+      if (e.target == canvas) { e.preventDefault(); }}, {passive: false});
     _img = new Image();
     _img.addEventListener('load',onImage,false);
     _img.src = image;
@@ -39,6 +43,7 @@ function setCanvas(){
     _canvas.width = _puzzleWidth;
     _canvas.height = _puzzleHeight;
     _canvas.style.border = "0px solid transparent";
+    _canvasOffset = _canvas.getBoundingClientRect();
 }
 function initPuzzle(){
     'use strict';
@@ -108,12 +113,20 @@ function shufflePuzzle(){
 function onPuzzleClick(e){
     'use strict';
     if(e.layerX || e.layerX == 0){
-        _mouse.x = e.layerX - _canvas.offsetLeft;
-        _mouse.y = e.layerY - _canvas.offsetTop;
+        _mouse.x = e.layerX; // - _canvas.offsetLeft;
+        _mouse.y = e.layerY; // - _canvas.offsetTop;
     }
     else if(e.offsetX || e.offsetX == 0){
         _mouse.x = e.offsetX - _canvas.offsetLeft;
         _mouse.y = e.offsetY - _canvas.offsetTop;
+    }
+    else {
+        const {pageX, pageY} = e.touches ? e.touches[0] : e;
+        const multX = _puzzleWidth/screen.width;
+        _mouse.x = (pageX - _canvasOffset.left) *multX;
+        _mouse.y = (pageY - _canvasOffset.top) *multX;
+        // console.log(`${_mouse.x} = ${pageX*multX} - ${_canvasOffset.left*multX}`)
+        // console.log(`${_mouse.y} = ${pageY*multX} - ${_canvasOffset.top*multX}`)
     }
     _currentPiece = checkPieceClicked();
     if(_currentPiece != null){
@@ -147,15 +160,22 @@ function updatePuzzle(e){
     'use strict';
     _currentDropPiece = null;
     if(e.layerX || e.layerX == 0){
-        _mouse.x = e.layerX - _canvas.offsetLeft;
-        _mouse.y = e.layerY - _canvas.offsetTop;
+        _mouse.x = e.layerX; // - _canvas.offsetLeft;
+        _mouse.y = e.layerY; // - _canvas.offsetTop;
     }
     else if(e.offsetX || e.offsetX == 0){
         _mouse.x = e.offsetX - _canvas.offsetLeft;
         _mouse.y = e.offsetY - _canvas.offsetTop;
     }
+    else {
+        const {pageX, pageY} = e.touches ? e.touches[0] : e;
+        const multX = _puzzleWidth/screen.width;
+        _mouse.x = (pageX - _canvasOffset.left) *multX;
+        _mouse.y = (pageY - _canvasOffset.top) *multX;
+        // console.log(`${_mouse.x} = ${pageX*multX} - ${_canvasOffset.left*multX}`)
+        // console.log(`${_mouse.y} = ${pageY*multX} - ${_canvasOffset.top*multX}`)
+    }
     _stage.clearRect(0,0,_puzzleWidth,_puzzleHeight);
-    // console_log({x:_mouse.x, y:_mouse.y, pw: _puzzleWidth, ph: _puzzleHeight});
     var i;
     var piece;
     for(i = 0;i < _pieces.length;i+=1){
@@ -176,8 +196,8 @@ function updatePuzzle(e){
                 _stage.fillStyle = PUZZLE_HOVER_TINT;
                 _stage.fillRect(_currentDropPiece.xPos,_currentDropPiece.yPos,_pieceWidth, _pieceHeight);
                 _stage.restore();
-    console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
-        { xps: piece.xPos, xpy: piece.yPos, dpx: _currentDropPiece.xPos, dpy: _currentDropPiece.yPos});
+    // console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        // { xps: piece.xPos, xpy: piece.yPos, dpx: _currentDropPiece.xPos, dpy: _currentDropPiece.yPos});
             }
         }
     }
@@ -229,8 +249,13 @@ function gameOver(){
     document.getElementById('canvas').ontouchmove = null;
     document.onmouseup = null;
     document.getElementById('canvas').ontouchend = null;
-    alert('You Win!');
-    initPuzzle();
+    // alert('You Win!');
+    // initPuzzle();
+    let msg = "Ready for a bigger challenge?";
+    if(confirm(msg))
+        init(PUZZLE_DIFFICULTY+1, _img.src)
+    else
+        init(PUZZLE_DIFFICULTY, _img.src)
 }
 function shuffleArray(o){
     'use strict';
@@ -239,9 +264,11 @@ function shuffleArray(o){
 }
 
 function console_log(obj1, obj2) {
-    console.log(obj1, obj2);
+    // console.log(obj1, obj2);
     document.getElementById("console1").innerHTML = objToString(obj1);
     document.getElementById("console2").innerHTML = objToString(obj2);
+    var browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+    document.getElementById("console3").innerHTML = `screen-width: ${screen.width}, screen-height: ${screen.height}, zoom: ${browserZoomLevel}%`;
 }
 function objToString(obj) {
     return Object.keys(obj).map(key => key+' : '+obj[key]).join('\n');
