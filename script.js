@@ -176,7 +176,8 @@ function updatePuzzle(e){
                 _stage.fillStyle = PUZZLE_HOVER_TINT;
                 _stage.fillRect(_currentDropPiece.xPos,_currentDropPiece.yPos,_pieceWidth, _pieceHeight);
                 _stage.restore();
-    console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight, dpx: _currentDropPiece.xPos, dpy: _currentDropPiece.yPos});
+    console_log({mx:_mouse.x, my:_mouse.y, pzw: _puzzleWidth, pzh: _puzzleHeight, pcw: _pieceWidth, pch: _pieceHeight}, 
+        { xps: piece.xPos, xpy: piece.yPos, dpx: _currentDropPiece.xPos, dpy: _currentDropPiece.yPos});
             }
         }
     }
@@ -237,9 +238,10 @@ function shuffleArray(o){
     return o;
 }
 
-function console_log(obj) {
-    console.log(obj);
-    document.getElementById("console").innerHTML = objToString(obj);
+function console_log(obj1, obj2) {
+    console.log(obj1, obj2);
+    document.getElementById("console1").innerHTML = objToString(obj1);
+    document.getElementById("console2").innerHTML = objToString(obj2);
 }
 function objToString(obj) {
     return Object.keys(obj).map(key => key+' : '+obj[key]).join('\n');

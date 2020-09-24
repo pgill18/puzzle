@@ -33,36 +33,37 @@
 
     </head>
     <body onload="init(4, 'img/punjab.jpg');">
-        <div style="display:flex; justify-content:center;">
+        <!-- <div style="display:flex; justify-content:center;"> -->
             <!-- <h2 class="text-center">Puzzle</h2> -->
             <!-- <label class="text-center">Puzzle</label> -->
-            <button class="btn-light" id="goFS">Go fullscreen</button>
-        </div>
-        <!-- <h2 class="text-center">Puzzle</h2> -->
+            <!-- <button class="btn-light" id="goFS">Go fullscreen</button> -->
+        <!-- </div> -->
+        <h3 class="text-center">Puzzle</h3>
         <div class="puzzle-wrapper">
             <canvas id="canvas"></canvas>
         </div>
         <!-- <div>
             <button class="btn-light" id="goFS">Go fullscreen</button>
         </div> -->
-        <div id="console">console</div>
+        <div id="console1">console1</div>
+        <div id="console2">console2</div>
 
         <!-- Optional JavaScript -->
         <script type="text/javascript">
-            var goFS = document.getElementById("goFS");
-            goFS.addEventListener("click", function() {
-              toggleFullScreen();
-            }, false);
+            // var goFS = document.getElementById("goFS");
+            // goFS.addEventListener("click", function() {
+            //   toggleFullScreen();
+            // }, false);
 
-            function toggleFullScreen() {
-              if (!document.fullscreenElement) {
-                  document.documentElement.requestFullscreen();
-              } else {
-                if (document.exitFullscreen) {
-                  document.exitFullscreen(); 
-                }
-              }
-            }
+            // function toggleFullScreen() {
+            //   if (!document.fullscreenElement) {
+            //       document.documentElement.requestFullscreen();
+            //   } else {
+            //     if (document.exitFullscreen) {
+            //       document.exitFullscreen(); 
+            //     }
+            //   }
+            // }
         </script>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
